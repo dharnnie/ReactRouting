@@ -1,65 +1,45 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import {render} from "react-dom"
+import React from 'react'
+import PropTypes from 'prop-types'
+import About from './components/About';
+import Home from './components/Home';
+import Repos from './components/Repos';
+import {render} from 'react-dom';
 
-import { KanbanBoardContainer } from "./containers/KanbanBoardContainer";
+export class App extends React.Component {
+  constructor(){
+    super(...arguments);
+    this.state = {
+      route:window.location.hash.substr(1)
+    };
+  }
 
-let cardsList = [
-     {
-         id: 1,
-         title: "Kill Bill",
-         description: "I should kill Bill with a spoon",
-         color: '#BD8D31',
-         status: "in-progress",
-         tasks: []
-     },
-     {
-         id: 2,
-         title: "Get a girlfriend",
-         description: "girlfriends can be found [here] (https://github.com/pro-react)",
-         color: '#3A7E28',
-         status: "todo",
-         tasks: [
-           {
-               id: 1,
-               name: "ContactList Example",
-               done: true
-           },
-           {
-               id: 2,
-               name: "Kanban Example",
-               done: false
-           },
-           {
-               id: 3,
-               name: "My own experiments",
-               done: false
-          }
-        ]
-      },
-      {
-          id: 2,
-          title: "Get a girlfriend",
-          description: "girlfriends can be found here (https://github.com/pro-react)",
-          status: "done",
-          tasks: [
-            {
-                id: 1,
-                name: "ContactList Example",
-                done: true
-            },
-            {
-                id: 2,
-                name: "Kanban Example",
-                done: false
-            },
-            {
-                id: 3,
-                name: "My own experiments",
-                done: false
-           }
-         ]
-       }
-];
+  componentDidMount(){
+    window.addEventListener('hashchange', ()=>{
+      this.setState({
+        route:window.location.hash.substr(1)
+      });
+    });
+  }
+  render(){
+    var Child;
+    switch (this.state.route) {
+      case '/about': Child = About; break;
+      case '/repos': Child = Repos; break;
+      default      : Child = Home;
+    }
+    return(
+      <div>
+        <header>App</header>
+        <menu>
+          <ul>
+            <li><a href="#/about">About</a></li>
+            <li><a href="#/repos">Repos</a></li>
+          </ul>
+        </menu>
+        <Child/>
+      </div>
+    );
+  }
+}
 
-render( <KanbanBoardContainer /> , document.getElementById("root"));
+render(<App/>, document.getElementById('root'));

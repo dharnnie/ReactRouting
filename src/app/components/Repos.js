@@ -18,12 +18,17 @@ class Repos extends React.Component {
   }
   render(){
     let repos = this.state.repositories.map((repo)=>(
-      <li key={repo.id}>{repo.name}</li>
+      <li key={repo.id}>
+        <Link to={"/repos/details/"+repo.name} >{repo.name}</Link>
+      </li>
     ));
     return(
       <div>
         <h1>REPOS</h1>
-        {repos}
+        <ul>
+          {repos}
+        </ul>
+        {this.props.children}
       </div>
     );
   }

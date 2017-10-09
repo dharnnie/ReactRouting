@@ -1,45 +1,41 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
+import 'whatwg-fetch';
+
+
 import About from './components/About';
 import Home from './components/Home';
 import Repos from './components/Repos';
 import {render} from 'react-dom';
 
 export class App extends React.Component {
-  constructor(){
-    super(...arguments);
-    this.state = {
-      route:window.location.hash.substr(1)
-    };
-  }
 
-  componentDidMount(){
-    window.addEventListener('hashchange', ()=>{
-      this.setState({
-        route:window.location.hash.substr(1)
-      });
-    });
-  }
   render(){
-    var Child;
-    switch (this.state.route) {
-      case '/about': Child = About; break;
-      case '/repos': Child = Repos; break;
-      default      : Child = Home;
-    }
+    
     return(
       <div>
-        <header>App</header>
+        <header><Link to="/home">App</Link></header>
         <menu>
           <ul>
-            <li><a href="#/about">About</a></li>
-            <li><a href="#/repos">Repos</a></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/repos">Repos</Link></li>
           </ul>
         </menu>
-        <Child/>
+        {this.props.children}
       </div>
     );
   }
 }
+render((
+  <BrowserRouter>
+    <div>
+      <Route exact path='/' component={App}/>
+      <Route path='/home' component={Home}/>
+      <Route path='/about' component={About}/>
+      <Route path='/repos' component={Repos}/>
+    </div>
+  </BrowserRouter>
+), document.getElementById('root'));
 
-render(<App/>, document.getElementById('root'));
+export default App;

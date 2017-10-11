@@ -1,6 +1,5 @@
 import React from 'react';
 import 'whatwg-fetch';
-import PropTypes from 'prop-types';
 
 
 class  RepoDetails extends React.Component {

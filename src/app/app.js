@@ -19,7 +19,7 @@ export class App extends React.Component {
         <menu>
           <ul>
             <li><Link to="/about">About</Link></li>
-            <li><Link to="/repos" >Repos</Link></li>
+            <li><Link to="/repos">Repos</Link></li>
           </ul>
         </menu>
         {this.props.children}

@@ -25,6 +25,13 @@ class Repos extends React.Component {
     ));
     return(
       <div>
+      <header><Link to="/home">App</Link></header>
+      <menu>
+        <ul>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/repos">Repos</Link></li>
+        </ul>
+      </menu>
         <h1>REPOS</h1>
         <ul>
           {repos}

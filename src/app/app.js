@@ -27,13 +27,28 @@ export class App extends React.Component {
     );
   }
 }
+const HomePage = (props) =>{
+  return(
+    <Home title="Home Page"/>
+  )
+}
+const AboutPage = (props) => {
+  return(
+    <About title="About Page"/>
+  )
+}
+const ReposPage = (props) =>{
+  return(
+    <Repos title = "Repos Page"/>
+  )
+}
 render((
   <Router>
     <div>
       <Route exact path='/' component={App}/>
-      <Route path='/home' component={Home}/>
-      <Route path='/about' component={About}/>
-      <Route path='/repos' component={Repos}>
+      <Route path='/home' render={HomePage}/>
+      <Route path='/about' render={AboutPage}/>
+      <Route path='/repos' render={ReposPage}>
         <Route path='details/:repo_name' component={RepoDetails}/>
       </Route>
     </div>

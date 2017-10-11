@@ -32,7 +32,7 @@ class Repos extends React.Component {
           <li><Link to="/repos">Repos</Link></li>
         </ul>
       </menu>
-        <h1>REPOS</h1>
+        <h1>{this.props.title}</h1>
         <ul>
           {repos}
         </ul>

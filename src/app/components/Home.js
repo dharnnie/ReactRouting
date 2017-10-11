@@ -12,7 +12,7 @@ class Home extends React.Component {
             <li><Link to="/repos">Repos</Link></li>
           </ul>
         </menu>
-        <h1>HOME</h1>
+        <h1>{this.props.title}</h1>
       </div>
     );
   }

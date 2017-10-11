@@ -31,7 +31,7 @@ class  RepoDetails extends React.Component {
   render(){
     let stars = [];
     for (var i=0;i<this.state.repository.stargazers_count; i++){
-      stars.push('Õ')
+      stars.push('$')
     }
     return(
       <div>
